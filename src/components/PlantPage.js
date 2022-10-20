@@ -16,8 +16,20 @@ function PlantPage() {
   function addNewPlant(plant) {
     console.log("adding new plant", plant)
     // POST to db.json
-
-    // use response.id to update plantData
+    fetch(dataUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(plant)
+    })
+    .then(r => r.json())
+    .then(data => setPlantData([
+      ...plantData,
+      data
+    ]))
+    
   }
 
   return (
