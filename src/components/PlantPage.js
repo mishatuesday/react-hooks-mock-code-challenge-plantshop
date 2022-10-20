@@ -15,7 +15,6 @@ function PlantPage() {
   }, [])
 
   function addNewPlant(plant) {
-    console.log("adding new plant", plant)
     // POST to db.json
     fetch(dataUrl, {
       method: "POST",
@@ -33,11 +32,34 @@ function PlantPage() {
     
   }
 
+  function toggleStock(plant) {
+    const newPlantData = plantData.map(thisPlant => {
+      if (thisPlant.id === plant.id) {
+        return {...plant, outOfStock: !thisPlant.outOfStock}
+      } else {
+        return thisPlant
+      }
+    })
+    setPlantData(newPlantData)
+  }
+
+  function deletePlant(plant) {
+    fetch(`${dataUrl}${plant.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    })
+    const newList = plantData.filter(thisPlant => thisPlant.id !== plant.id)
+    setPlantData(newList)
+  }
+
   return (
     <main>
       <NewPlantForm addNewPlant={addNewPlant} />
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <PlantList searchTerm={searchTerm} plantData={plantData} />
+      <PlantList deletePlant={deletePlant} toggleStock={toggleStock} searchTerm={searchTerm} plantData={plantData} />
     </main>
   );
 }

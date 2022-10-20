@@ -1,26 +1,17 @@
 import React from "react";
 
-function PlantCard({plant}) {
-  // let plantOutOfStock = false
-
-  // function toggleStock() {
-  //   if (plantOutOfStock) {
-  //     plantOutOfStock = false
-  //   } else {
-  //     plantOutOfStock = true
-  //   }
-  // }
-
+function PlantCard({plant, toggleStock, deletePlant}) {
   return (
     <li className="card">
       <img src={plant.image} alt={"plant name"} />
       <h4>{plant.name}</h4>
       <p>Price: {plant.price}</p>
-      {false ? (
-        <button>Out Of Stock</button>
+      {plant.outOfStock ? (
+        <button onClick={() => toggleStock(plant)}>Out Of Stock</button>
       ) : (
-        <button className="primary">In Stock</button>
+        <button onClick={() => toggleStock(plant)} className="primary">In Stock</button>
       )}
+      <button onClick={() => deletePlant(plant)}>X</button>
     </li>
   );
 }

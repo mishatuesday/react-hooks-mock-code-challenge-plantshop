@@ -53,6 +53,12 @@
       "image": "https://www.farmersalmanac.com/wp-content/uploads/2022/05/Poppyy-1200x900-1.jpeg",
       "price": "25.99",
       "id": 9
+    },
+    {
+      "name": "Poppy's True Neutral Cousin",
+      "image": "https://www.farmersalmanac.com/wp-content/uploads/2022/05/Poppyy-1200x900-1.jpeg",
+      "price": "45.66",
+      "id": 13
     }
   ]
 }
